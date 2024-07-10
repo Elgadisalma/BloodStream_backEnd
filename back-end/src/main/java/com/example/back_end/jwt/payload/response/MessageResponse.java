@@ -1,7 +1,11 @@
-package com.example.back_end.jwt.payload.responses;
+package com.example.back_end.jwt.payload.response;
 
 public class MessageResponse {
     private String message;
+
+    public MessageResponse(String message) {
+        this.message = message;
+    }
 
     public String getMessage() {
         return message;
@@ -10,10 +14,4 @@ public class MessageResponse {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public MessageResponse(String message) {
-        super();
-        this.message = message;
-    }
-
 }

@@ -1,28 +1,32 @@
 package com.example.back_end.controller;
 
+
 import com.example.back_end.entity.Utilisateur;
-import com.example.back_end.jwt.payload.requests.SignupRequest;
-import com.example.back_end.jwt.payload.responses.MessageResponse;
+import com.example.back_end.jwt.JwtUtils;
+import com.example.back_end.jwt.payload.request.LoginRequest;
+import com.example.back_end.jwt.payload.request.SignupRequest;
+import com.example.back_end.jwt.payload.response.JwtResponse;
+import com.example.back_end.jwt.payload.response.MessageResponse;
+import com.example.back_end.jwt.payload.response.UserInfoResponse;
 import com.example.back_end.respository.UserRepository;
-import com.example.back_end.service.UserDetailsServiceImpl;
 import com.example.back_end.service.UserService;
+import com.example.back_end.service.impl.UserDetailsImpl;
+import jakarta.servlet.http.Cookie;
 import jakarta.validation.Valid;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -40,7 +44,10 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
-    @PostMapping("/login")
+    @Autowired
+    UserService userService;
+
+    @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -48,26 +55,33 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        UserDetailsServiceImpl userDetails = (UserDetailsServiceImpl) authentication.getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
+        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString()).body(
-                new UserInfoResponse(userDetails.getUserId(), userDetails.getUsername(), userDetails.getEmail()));
+                new UserInfoResponse(userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
     }
 
-
-
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already taken !"));
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
         }
 
-        Utilisateur user = UserService.registerUser(
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        Utilisateur user = userService.registerUser(
                 signUpRequest.getUsername(),
-                signUpRequest.getAdress(),
                 signUpRequest.getEmail(),
                 signUpRequest.getPassword()
         );
@@ -75,9 +89,7 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
-
-
-    @PostMapping("/logout")
+    @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
