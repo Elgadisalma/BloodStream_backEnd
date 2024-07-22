@@ -83,4 +83,7 @@ public class JwtUtils {
                 .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();
     }
+    public String generateJwtToken(UserDetailsImpl userDetails) {
+        return generateTokenFromUsername(userDetails.getUsername());
+    }
 }

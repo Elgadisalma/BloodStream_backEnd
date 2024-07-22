@@ -7,6 +7,7 @@ public class UserInfoResponse {
     private String username;
     private String email;
     private List<String> roles;
+    private String token;
 
     public Long getId() {
         return id;
@@ -40,12 +41,21 @@ public class UserInfoResponse {
         this.roles = roles;
     }
 
-    public UserInfoResponse(Long id, String username, String email, List<String> roles) {
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public UserInfoResponse(Long id, String username, String email, List<String> roles, String token) {
         super();
         this.id = id;
         this.username = username;
         this.email = email;
         this.roles = roles;
+        this.token = token;
     }
 
 }
