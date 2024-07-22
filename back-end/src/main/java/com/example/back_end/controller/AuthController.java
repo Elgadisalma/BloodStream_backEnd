@@ -5,13 +5,11 @@ import com.example.back_end.entity.Utilisateur;
 import com.example.back_end.jwt.JwtUtils;
 import com.example.back_end.jwt.payload.request.LoginRequest;
 import com.example.back_end.jwt.payload.request.SignupRequest;
-import com.example.back_end.jwt.payload.response.JwtResponse;
 import com.example.back_end.jwt.payload.response.MessageResponse;
 import com.example.back_end.jwt.payload.response.UserInfoResponse;
 import com.example.back_end.respository.UserRepository;
 import com.example.back_end.service.UserService;
 import com.example.back_end.service.impl.UserDetailsImpl;
-import jakarta.servlet.http.Cookie;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -57,13 +55,22 @@ public class AuthController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+        // Générer le jeton JWT
+        String jwtToken = jwtUtils.generateJwtToken(userDetails);
 
-        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString()).body(
-                new UserInfoResponse(userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+        UserInfoResponse response = new UserInfoResponse(
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles,
+                jwtToken
+        );
+
+        return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/signup")
