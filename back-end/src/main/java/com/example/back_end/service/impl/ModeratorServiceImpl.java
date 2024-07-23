@@ -35,6 +35,9 @@ public class ModeratorServiceImpl implements ModeratorService {
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole().name())
+                .dateNaissance(user.getDateNaissance())
+                .codePostal(user.getCodePostal())
+                .phoneNumber(user.getPhoneNumber())
                 .build();
     }
 

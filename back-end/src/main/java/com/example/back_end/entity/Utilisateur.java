@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.Date;
+
 
 @Entity
 @Table(name = "Utilisateurs")
@@ -31,13 +33,25 @@ public class Utilisateur {
     @Column(length = 20)
     private ERole role;
 
+    @Temporal(TemporalType.DATE)
+    private Date dateNaissance;
+
+    @Size(max = 10)
+    private String codePostal;
+
+    @Size(max = 15)
+    private String phoneNumber;
+
     public Utilisateur() {
     }
 
-    public Utilisateur(String username, String email, String password) {
+    public Utilisateur(String username, String email, String password, Date dateNaissance, String codePostal, String phoneNumber) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.dateNaissance = dateNaissance;
+        this.codePostal = codePostal;
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {
@@ -78,5 +92,29 @@ public class Utilisateur {
 
     public void setRole(ERole role) {
         this.role = role;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
