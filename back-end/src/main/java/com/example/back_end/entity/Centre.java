@@ -13,11 +13,9 @@ public class Centre {
     @Size(min = 2, message = "Name cannot be empty")
     private String name;
 
-    @Column(unique = true)
-    @Size(min = 10, message = "Address must be at least 10 characters long")
+
     private String adress;
 
-    @Size(min = 3, message = "City must be at least 3 characters long")
     private String city;
 
     @ManyToOne
