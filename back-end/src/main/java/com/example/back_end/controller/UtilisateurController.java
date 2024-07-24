@@ -30,6 +30,7 @@ public class UtilisateurController {
         return ResponseEntity.ok(savedUser);
     }
 
+
     @DeleteMapping("/{userId}")
     public ResponseEntity<UtilisateurResponse> deleteUser(@PathVariable Long userId) {
         UtilisateurResponse deletedUser = moderatorService.deleteUser(userId);

@@ -90,11 +90,15 @@ public class AuthController {
         Utilisateur user = userService.registerUser(
                 signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                signUpRequest.getPassword()
+                signUpRequest.getPassword(),
+                signUpRequest.getDateNaissance(),
+                signUpRequest.getCodePostal(),
+                signUpRequest.getPhoneNumber()
         );
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
 
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {
