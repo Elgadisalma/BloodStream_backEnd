@@ -96,9 +96,8 @@ public class AuthController {
                 signUpRequest.getPhoneNumber()
         );
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("User registered successfully. A verification email has been sent."));
     }
-
 
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {

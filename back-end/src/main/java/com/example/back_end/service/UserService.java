@@ -9,16 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PasswordEncoder encoder;
+    private PasswordEncoder encoder;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @Transactional
     public Utilisateur registerUser(String username, String email, String password, Date dateNaissance, String codePostal, String phoneNumber) {
@@ -29,12 +32,17 @@ public class UserService {
         user.setDateNaissance(dateNaissance);
         user.setCodePostal(codePostal);
         user.setPhoneNumber(phoneNumber);
-
-        // Assigner le rôle par défaut
         user.setRole(ERole.CLIENT);
 
-        return userRepository.save(user);
+        // Générer un token de vérification
+        String verificationToken = UUID.randomUUID().toString();
+        user.setVerificationToken(verificationToken);
+
+        Utilisateur savedUser = userRepository.save(user);
+
+        // Envoyer l'e-mail de vérification
+        emailSenderService.sendVerificationEmail(savedUser);
+
+        return savedUser;
     }
-
-
 }
