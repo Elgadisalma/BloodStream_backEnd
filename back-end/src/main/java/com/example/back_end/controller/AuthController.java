@@ -23,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -47,6 +48,22 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+        Optional<Utilisateur> userOptional = userRepository.findByUsername(loginRequest.getUsername());
+
+        if (userOptional.isPresent()) {
+            Utilisateur user = userOptional.get();
+
+            if (!user.isVerified()) {
+                return ResponseEntity
+                        .badRequest()
+                        .body(new MessageResponse("Error: Please verify your email before signing in!"));
+            }
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: User not found!"));
+        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -96,9 +113,8 @@ public class AuthController {
                 signUpRequest.getPhoneNumber()
         );
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("User registered successfully. A verification email has been sent."));
     }
-
 
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {

@@ -42,6 +42,12 @@ public class Utilisateur {
     @Size(max = 15)
     private String phoneNumber;
 
+    @Column(nullable = false)
+    private boolean verified = false;
+
+    @Column(unique = true)
+    private String verificationToken;
+
     public Utilisateur() {
     }
 
@@ -116,5 +122,21 @@ public class Utilisateur {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }
