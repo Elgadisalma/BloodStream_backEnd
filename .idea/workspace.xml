@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="38e953f2-484e-425c-9849-be5fa45ae874" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/controller/RendezvousController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/controller/StatisticsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/controller/UsersController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/DossierMedicale.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Statistics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Stock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/respository/CentreRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/respository/DonRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/respository/DossierMedicale.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/respository/NotificationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/respository/RendezvousRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/respository/StockRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/respository/UsersRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/service/RendezvousService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/service/StatisticsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/service/UsersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Centre.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Centre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Don.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Don.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Donneur.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Rendezvous.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/back_end/entity/Rendezvous.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2jjsnvKrTO17quAzUFJBKrjHi2A" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BackEndApplication.executor": "Run",
+    "JUnit.BackEndApplicationTests.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "ismail",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Gebruiker/Documents/GitHub/BloodStream_backEnd/back-end",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "promo.kubernetes"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="BloodStream_backEnd" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="BloodStream_backEnd" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="38e953f2-484e-425c-9849-be5fa45ae874" name="Changes" comment="" />
+      <created>1721911990845</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721911990845</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="RELOAD_CONTEXT" value="false" />
+  </component>
+</project>

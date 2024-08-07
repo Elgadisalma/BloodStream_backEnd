@@ -1,4 +1,4 @@
-package com.example.Database.model;
+package com.example.back_end.entity;
 
 import jakarta.persistence.*;
 
@@ -14,13 +14,13 @@ public class Rendezvous {
     private String statut;
 
     @ManyToOne
-    @JoinColumn(name = "donneur_id")
-    private Donneur donneur;
+    @JoinColumn(name = "user_id")
+    private Users user;
 
-    public Rendezvous(Date dateHeure, String statut, Donneur donneur) {
+    public Rendezvous() {
         this.dateHeure = dateHeure;
         this.statut = statut;
-        this.donneur = donneur;
+
     }
 
     public Long getId() {
@@ -47,11 +47,29 @@ public class Rendezvous {
         this.statut = statut;
     }
 
-    public Donneur getDonneur() {
-        return donneur;
+    public Users getUser() {
+        return user;
     }
 
-    public void setDonneur(Donneur donneur) {
-        this.donneur = donneur;
+    public void setUser(Users user) {
+        this.user = user;
+    }
+    public void addRendezVous(Date dateHeure, String statut, Users user) {
+        this.dateHeure = dateHeure;
+        this.statut = statut;
+        this.user = user;
+    }
+
+    public void modifyRendezVous(Date dateHeure, String statut) {
+        this.dateHeure = dateHeure;
+        this.statut = statut;
+    }
+
+    public void cancelRendezVous() {
+        this.statut = "Canceled";
+    }
+
+    public String viewRendezVous() {
+        return "Date and Time: " + this.dateHeure + ", Status: " + this.statut;
     }
 }

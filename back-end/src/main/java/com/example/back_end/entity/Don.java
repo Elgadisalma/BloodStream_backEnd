@@ -1,4 +1,4 @@
-package com.example.Database.model;
+package com.example.back_end.entity;
 
 import jakarta.persistence.*;
 
